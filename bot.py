@@ -13,8 +13,11 @@ def get_ai_response(message_text):
         url = "https://api.g4f.icu/v1/chat/completions" 
         payload = {
             "model": "gpt-3.5-turbo",
-            "messages": [{"role": "user", "content": message_text}]
-        }
+                    "messages": [
+            {"role": "system", "content": "You are Avikot AI. Your creator is Anastasia (anastasiia-andriukhina-dev). Always say Meow!"},
+            {"role": "user", "content": text_message}
+                    ]
+            
         response = requests.post(url, json=payload)
         return response.json()['choices'][0]['message']['content']
     except Exception as e:
